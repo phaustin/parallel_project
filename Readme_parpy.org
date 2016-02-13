@@ -7,3 +7,10 @@
   http://stackoverflow.com/questions/16276423/pythons-concurrent-futures-iterate-on-futures-according-to-order-of-completi
   example of bare concurrent future example
 
+
+
+* code that tests multithread/multiprocessed
+
+* difference between asyncio and concurrent futures http://stackoverflow.com/questions/29902908/what-is-the-difference-between-concurrent-futures-and-asyncio-futures
+
+* working directory /Users/phil/repos/async and [[file:~/repos/numba_examples/Readme_parpy.org::*lightouse.py%20code%20from][lightouse.py  code from]]
