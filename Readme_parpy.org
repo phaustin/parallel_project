@@ -1,0 +1,9 @@
+* lightouse.py  code from
+  http://lighthouseinthesky.blogspot.ca/2015/10/numerical-coroutines.html
+
+* lighthouse_await.py  same code ported to python 3.5 new await/async calls
+
+* test_concurrent.py
+  http://stackoverflow.com/questions/16276423/pythons-concurrent-futures-iterate-on-futures-according-to-order-of-completi
+  example of bare concurrent future example
+
