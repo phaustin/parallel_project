@@ -9,7 +9,7 @@ from timeit import repeat
 import numpy as np
 from numba import jit
 
-nthreads = 2
+nthreads = 4
 size = 1e6
 
 def func_np(a, b):

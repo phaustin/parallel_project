@@ -17,12 +17,12 @@ def func_np(a, b):
     """
     return np.exp(2.1 * a + 3.2 * b)
 
-@jit('void(double[:], double[:], double[:])', nopython=False, nogil=False)
+@jit('void(double[:], double[:], double[:])', nopython=True, nogil=True)
 def inner_func_nb(result, a, b):
     """
     Function under test.
     """
-    print('here in inner: a,b',type(result),len(result),type(a),len(a),type(b),len(b))
+    #print('here in inner: a,b',type(result),len(result),type(a),len(a),type(b),len(b))
     for i in range(len(result)):
         result[i] = math.exp(2.1 * a[i] + 3.2 * b[i])
 
@@ -60,7 +60,7 @@ def make_multithread(inner_func, numthreads):
         #
         # args = [a,b]
         #
-        print('at top of func_mt: ',len(args))
+        #print('at top of func_mt: ',len(args))
         length = len(args[0])
         result = np.empty(length, dtype=np.float64)
         args = (result,) + args
@@ -68,7 +68,7 @@ def make_multithread(inner_func, numthreads):
         # Create argument tuples for each input chunk
         chunks = [[arg[i * chunklen:(i + 1) * chunklen] for arg in args]
                   for i in range(numthreads)]
-        print('chunk: ',len(chunks[0]),len(chunks))
+        #print('chunk: ',len(chunks[0]),len(chunks))
         # Spawn one thread per chunk
         threads = [threading.Thread(target=inner_func, args=chunk)
                    for chunk in chunks]
