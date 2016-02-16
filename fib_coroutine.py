@@ -1,6 +1,9 @@
 """Async fibonacci implementation taken from:
 http://stackoverflow.com/questions/25105850/asyncio-with-mapreduce-flavor-and-without-flooding-the-event-loop"""     
+import logging,os
+os.environ['PYTHONASYNCIODEBUG'] = '1'
 import asyncio
+logging.basicConfig(level=logging.DEBUG)
 import sys
 from time import time
 queue = asyncio.Queue()
@@ -9,18 +12,19 @@ def handle_stdin():
     data = sys.stdin.readline()
     asyncio.ensure_future(queue.put(data))
 
+
 async def coro_sum(summands):
     return sum(summands)
 
-
-async def fib(n):
+@asyncio.coroutine
+def fib(n):
     if n<=1:
         s = n
     else:
-        await asyncio.sleep(0) #stops the computation from blocking 
-        a = await fib(n-2) 
-        b = await fib(n-1) 
-        s = await coro_sum([a, b])
+        yield from asyncio.sleep(0) #stops the computation from blocking 
+        a = yield from fib(n-2) 
+        b = yield from fib(n-1) 
+        s = yield from coro_sum([a, b])
     return s
 
 def log_execution_time(method):
@@ -44,12 +48,13 @@ def tick():
        print('fib({}) = {}'.format(n, res))
 
 
-@asyncio.coroutine
-def print_hello():
+
+async def print_hello():
     while True:
         print("{} - Hello world!".format(int(time())))
-        yield from asyncio.sleep(3)    
+        await asyncio.sleep(3)    
 
+import logging
 loop = asyncio.get_event_loop()
 loop.add_reader(sys.stdin, handle_stdin)
 tasks = [tick(), print_hello()]
