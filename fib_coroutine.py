@@ -17,14 +17,25 @@ async def coro_sum(summands):
     return sum(summands)
 
 @asyncio.coroutine
-def fib(n):
+def fib34(n):
     if n<=1:
         s = n
     else:
         yield from asyncio.sleep(0) #stops the computation from blocking 
-        a = yield from fib(n-2) 
-        b = yield from fib(n-1) 
+        a = yield from fib34(n-2) 
+        b = yield from fib34(n-1) 
         s = yield from coro_sum([a, b])
+    return s
+
+
+async def fib35(n):
+    if n<=1:
+        s = n
+    else:
+        await asyncio.sleep(0) #stops the computation from blocking 
+        a = await fib35(n-2) 
+        b = await fib35(n-1) 
+        s = await coro_sum([a, b])
     return s
 
 def log_execution_time(method):
@@ -38,13 +49,15 @@ def log_execution_time(method):
         return result
     return timed
 
-timed_fib = log_execution_time(fib)               
+timed_fib34 = log_execution_time(fib34)               
+
+timed_fib35 = log_execution_time(fib35)               
 
 def tick():
     while True:
        text = yield from queue.get()
        n = int(text.strip())
-       res = yield from timed_fib(n)
+       res = yield from timed_fib35(n)
        print('fib({}) = {}'.format(n, res))
 
 
