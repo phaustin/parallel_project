@@ -7,21 +7,20 @@ queue = asyncio.Queue()
 
 def handle_stdin():
     data = sys.stdin.readline()
-    asyncio.async(queue.put(data))
+    asyncio.ensure_future(queue.put(data))
 
-@asyncio.coroutine
-def coro_sum(summands):
+async def coro_sum(summands):
     return sum(summands)
 
-@asyncio.coroutine
-def fib(n):
+
+async def fib(n):
     if n<=1:
         s = n
     else:
-        yield from asyncio.sleep(0) #stops the computation from blocking 
-        a = yield from fib(n-2) 
-        b = yield from fib(n-1) 
-        s = yield from coro_sum([a, b])
+        await asyncio.sleep(0) #stops the computation from blocking 
+        a = await fib(n-2) 
+        b = await fib(n-1) 
+        s = await coro_sum([a, b])
     return s
 
 def log_execution_time(method):

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#lighthouse code
 # -*- coding: utf-8 -*-
 #http://lighthouseinthesky.blogspot.ca/2015/10/numerical-coroutines.html
 

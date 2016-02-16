@@ -1,3 +1,9 @@
+#+STARTUP: showall
+#+STARTUP: hidestars
+
+
+* Readme_parpy.org
+
 * lightouse.py  code from
   http://lighthouseinthesky.blogspot.ca/2015/10/numerical-coroutines.html
 
@@ -7,10 +13,20 @@
   http://stackoverflow.com/questions/16276423/pythons-concurrent-futures-iterate-on-futures-according-to-order-of-completi
   example of bare concurrent future example
 
-
+* pinboard tag async
 
 * code that tests multithread/multiprocessed
 
 * difference between asyncio and concurrent futures http://stackoverflow.com/questions/29902908/what-is-the-difference-between-concurrent-futures-and-asyncio-futures
 
-* working directory /Users/phil/repos/async and [[file:~/repos/numba_examples/Readme_parpy.org::*lightouse.py%20code%20from][lightouse.py  code from]]
+* working directory /Users/phil/repos/parpy and [[file:lighthouse_await.py::#lighthouse%20code][Lighthouse code]]
+
+https://github.com/phaustin/2014-handy-dist-computing  -- celery and ipyparallel
+  slides:  https://blog.liang2.tw/2014-handy-dist-computing/
+
+joblib vs. celery
+
+
+* deepdish for storing dictionaries
+
+* dill for ipyparallel: https://github.com/ipython/ipyparallel/blob/master/examples/Using%20Dill.ipynb
