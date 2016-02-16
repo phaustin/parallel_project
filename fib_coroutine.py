@@ -6,6 +6,7 @@ import asyncio
 logging.basicConfig(level=logging.DEBUG)
 import sys
 from time import time
+from concurrent.futures import ProcessPoolExecutor
 queue = asyncio.Queue()
 
 def handle_stdin():
@@ -69,6 +70,8 @@ async def print_hello():
 
 import logging
 loop = asyncio.get_event_loop()
+numprocs=2
+loop.set_default_executor(ProcessPoolExecutor(numprocs))
 loop.add_reader(sys.stdin, handle_stdin)
 tasks = [tick(), print_hello()]
 loop.run_until_complete(asyncio.wait(tasks))
