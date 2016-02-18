@@ -30,3 +30,5 @@ joblib vs. celery
 * deepdish for storing dictionaries
 
 * dill for ipyparallel: https://github.com/ipython/ipyparallel/blob/master/examples/Using%20Dill.ipynb
+
+* anne archibalds parallel code: https://github.com/aarchiba/futuretools

@@ -11,6 +11,7 @@ queue = asyncio.Queue()
 
 def handle_stdin():
     data = sys.stdin.readline()
+    print('current length of queue: ',queue.qsize())
     asyncio.ensure_future(queue.put(data))
 
 
@@ -57,11 +58,10 @@ timed_fib35 = log_execution_time(fib35)
 def tick():
     while True:
        text = yield from queue.get()
+       print('new queue size: ',queue.qsize())
        n = int(text.strip())
        res = yield from timed_fib35(n)
        print('fib({}) = {}'.format(n, res))
-
-
 
 async def print_hello():
     while True:
@@ -74,6 +74,8 @@ numprocs=2
 loop.set_default_executor(ProcessPoolExecutor(numprocs))
 loop.add_reader(sys.stdin, handle_stdin)
 tasks = [tick(), print_hello()]
-loop.run_until_complete(asyncio.wait(tasks))
+futures=asyncio.wait(tasks)
+print(futures)
+loop.run_until_complete(futures)
 loop.close()   
     
