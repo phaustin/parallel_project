@@ -54,12 +54,12 @@ class Integrator:
 
 if __name__=='__main__':
     def f(x):
-        time.sleep(0.1)
+        #time.sleep(0.1)
         #print(x)
         return np.sin(x)
 
     now = time.time()
-    I = Integrator(f, cores=16)
+    I = Integrator(f, cores=100)
     r = I.integrate_interval(0, np.pi)
     print(r,len(I._f_cache),time.time()-now)
     
