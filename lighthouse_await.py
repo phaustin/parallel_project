@@ -54,12 +54,13 @@ class Integrator:
 
 if __name__=='__main__':
     def f(x):
-        #time.sleep(0.1)
-        #print(x)
+        #fake a longer calculation
+        time.sleep(0.01)
         return np.sin(x)
 
     now = time.time()
-    I = Integrator(f, cores=100)
+    ncores=2
+    I = Integrator(f, cores=ncores)
     r = I.integrate_interval(0, np.pi)
-    print(r,len(I._f_cache),time.time()-now)
+    print(f'answer: {r:6.4f}, cache length: {len(I._f_cache)},elapsed time: {time.time()-now:5.4f} seconds, ncores: {ncores}')
     
